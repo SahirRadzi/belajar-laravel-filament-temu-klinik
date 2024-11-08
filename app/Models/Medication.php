@@ -14,6 +14,7 @@ class Medication extends Model
         'name',
         'stock',
         'price',
+        'image',
         'supplier_info',
         'exp_date',
     ];

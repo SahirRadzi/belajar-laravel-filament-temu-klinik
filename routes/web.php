@@ -21,8 +21,8 @@ Route::get('/test', function() {
     // dd($recipient);
 
     Notification::make()
-    ->title(title:'You have a new task: New Patient')
-    ->body('Select the patient schedule.')
+    ->title(title:'You have added : New Medicine')
+    ->body('10pcs Loratadine 10mg.')
     ->info()
     ->actions([
         Action::make('view')

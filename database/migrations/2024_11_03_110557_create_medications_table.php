@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('stock');
             $table->double('price', 8,2)->nullable();
+            $table->string('image')->nullable();
             $table->json('supplier_info')->nullable();
             $table->date('exp_date');
             $table->timestamps();

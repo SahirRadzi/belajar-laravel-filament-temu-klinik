@@ -18,8 +18,8 @@ use App\Filament\Resources\MedicationResource\RelationManagers;
 class MedicationResource extends Resource
 {
     protected static ?string $model = Medication::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Pharmacist management';
 
     public static function form(Form $form): Form
     {
@@ -35,15 +35,17 @@ class MedicationResource extends Resource
                     ->required()
                     ->numeric(),
                 Forms\Components\TextInput::make('price')
-                    ->prefix('RM ')
-                    ->numeric(),
+                    ->numeric()
+                    ->prefix('RM '),
+                Forms\Components\FileUpload::make('image')
+                    ->image(),
                 Forms\Components\DatePicker::make('exp_date')
                     ->required(),
 
-                    Section::make('Supplier Information')
-                        ->description('Fill Supplier details')
-                        ->schema([
-                           Repeater::make('supplier_info')
+                Section::make('Supplier Information')
+                    ->description('Add supplier information details.')
+                    ->schema([
+                        Repeater::make('supplier_info')
                             ->hiddenLabel()
                              ->addActionLabel('Add more details')
                             ->schema([
@@ -54,7 +56,7 @@ class MedicationResource extends Resource
                                 Forms\Components\TextInput::make('value')
                                 ->maxLength(255),
                             ])->columns(2),
-                        ]),
+                    ]),
             ]);
     }
 
@@ -70,9 +72,11 @@ class MedicationResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('price')
-                    ->prefix('RM '),
+                    ->prefix('RM ')
+                    ->sortable(),
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('exp_date')
-                    ->date('d-m-Y')
+                    ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -89,7 +93,6 @@ class MedicationResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -110,6 +113,7 @@ class MedicationResource extends Resource
         return [
             'index' => Pages\ListMedications::route('/'),
             'create' => Pages\CreateMedication::route('/create'),
+            'view' => Pages\ViewMedication::route('/{record}'),
             'edit' => Pages\EditMedication::route('/{record}/edit'),
         ];
     }
