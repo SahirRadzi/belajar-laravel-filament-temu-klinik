@@ -13,6 +13,12 @@ class Medication extends Model
         'reg_code',
         'name',
         'stock',
+        'price',
+        'supplier_info',
         'exp_date',
+    ];
+
+    protected $casts = [
+        'supplier_info' => 'json'
     ];
 }

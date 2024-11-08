@@ -2,16 +2,18 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\MedicationResource\Pages;
-use App\Filament\Resources\MedicationResource\RelationManagers;
-use App\Models\Medication;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Medication;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Repeater;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\MedicationResource\Pages;
+use App\Filament\Resources\MedicationResource\RelationManagers;
 
 class MedicationResource extends Resource
 {
@@ -32,8 +34,27 @@ class MedicationResource extends Resource
                 Forms\Components\TextInput::make('stock')
                     ->required()
                     ->numeric(),
+                Forms\Components\TextInput::make('price')
+                    ->prefix('RM ')
+                    ->numeric(),
                 Forms\Components\DatePicker::make('exp_date')
                     ->required(),
+
+                    Section::make('Supplier Information')
+                        ->description('Fill Supplier details')
+                        ->schema([
+                           Repeater::make('supplier_info')
+                            ->hiddenLabel()
+                             ->addActionLabel('Add more details')
+                            ->schema([
+                                Forms\Components\Select::make('name')
+                                ->options(config(key: 'si-config')),
+
+
+                                Forms\Components\TextInput::make('value')
+                                ->maxLength(255),
+                            ])->columns(2),
+                        ]),
             ]);
     }
 
@@ -48,8 +69,10 @@ class MedicationResource extends Resource
                 Tables\Columns\TextColumn::make('stock')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('price')
+                    ->prefix('RM '),
                 Tables\Columns\TextColumn::make('exp_date')
-                    ->date()
+                    ->date('d-m-Y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
