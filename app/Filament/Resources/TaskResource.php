@@ -28,8 +28,7 @@ class TaskResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Select::make('user_id')
-                    ->relationship('user','name')
-                    ->required(),
+                    ->relationship(name:'user', titleAttribute: 'name'),
             ]);
     }
 

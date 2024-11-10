@@ -55,14 +55,14 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
             ])
             // ->databaseNotificationsPolling(interval: '5s')
+            ->databaseNotifications()
+            ->databaseNotificationsPolling(interval:'3s')
             ->authMiddleware([
                 Authenticate::class,
                 ])
                 ->plugins([
                     \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
-                ])
-                ->databaseNotifications()
-                ->databaseNotificationsPolling(interval:'3s');
+                ]);
 
     }
 }

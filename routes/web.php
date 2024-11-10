@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Filament\Notifications\Notification;
 use Filament\Notifications\Actions\Action;
@@ -17,11 +19,14 @@ use Filament\Notifications\Actions\Action;
 */
 
 Route::get('/test', function() {
-    $recipient = auth()->user();
+
+    $doctor = User::role('doctor')->get(); // Returns only users with the role 'doctor'
+    // $recipient = auth()->user()->id = 2;
+    // dd($doctor);
     // dd($recipient);
 
     Notification::make()
-    ->title(title:'You have added : New Medicine')
+    ->title(title:'You have added : Test')
     ->body('10pcs Loratadine 10mg.')
     ->info()
     ->actions([
@@ -30,11 +35,11 @@ Route::get('/test', function() {
             ->outlined()
             ->markAsRead(),
     ])
-        ->sendToDatabase($recipient)
+        ->sendToDatabase($doctor)
         // ->broadcast($recipient)
         ;
         // event(new DatabaseNotificationsSent($recipient));
-        dd('success sending !');
+        dd('Test sending to all Doctor !');
 
 })->middleware('auth');
 // Route::get('/', function () {
