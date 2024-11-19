@@ -19,6 +19,11 @@ class TaskResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Notification Dev';
 
+    public static function getNavigationBadge(): ?String
+    {
+        return 'DEVELOPMENT';
+    }
+
     public static function form(Form $form): Form
     {
 

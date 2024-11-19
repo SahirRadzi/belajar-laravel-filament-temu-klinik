@@ -21,7 +21,19 @@ use App\Filament\Resources\PatientAppointmentResource\RelationManagers;
 class PatientAppointmentResource extends Resource
 {
     protected static ?string $model = PatientAppointment::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-m-user-group';
+
+    public static function getNavigationBadge(): ?String
+    {
+        return static::getModel()::where('status','=','new patient')->count();
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return static::getModel()::where('status', '=','new patient')->count() > 0
+        ? 'danger'
+        : 'primary';
+    }
 
 
     public static function form(Form $form): Form

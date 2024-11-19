@@ -24,7 +24,7 @@ use App\Filament\Resources\PatientResource\RelationManagers;
 class PatientResource extends Resource
 {
     protected static ?string $model = Patient::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-m-user-plus';
     protected static ?string $navigationGroup = 'Data management';
     // protected static ?int $navigationSort = 1;
 

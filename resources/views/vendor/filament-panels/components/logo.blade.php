@@ -1,5 +1,5 @@
 <h1 class="fi-header-heading text-xl font-bold dark:text-white">
-    The London Clinic
+    TemuDklinik
 </h1>
 
 

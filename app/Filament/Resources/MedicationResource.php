@@ -20,6 +20,7 @@ class MedicationResource extends Resource
     protected static ?string $model = Medication::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Pharma management';
 
     public static function form(Form $form): Form
     {

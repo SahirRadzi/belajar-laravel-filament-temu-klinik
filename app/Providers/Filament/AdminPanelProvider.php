@@ -28,7 +28,8 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Gray, // '#674CC4' purple color
+                'primary' => '#674CC4',
+                // 'primary' => Color::Gray,  '#674CC4' purple color
             ])
             ->font(family:'Poppins') // font family stye 'Poppins' / By Default 'Inter'
             // ->darkMode(condition: false) // darkMode setting boolean
