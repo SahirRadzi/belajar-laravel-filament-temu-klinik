@@ -2,6 +2,7 @@
 
 
 use App\Models\User;
+use App\Livewire\Booking;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Filament\Notifications\Notification;
@@ -46,3 +47,5 @@ Route::get('/test', function() {
         dd('Test Kedua !');
 
 });
+
+Route::get('booking', Booking::class);
