@@ -30,7 +30,7 @@ class ReservationAppointmentResource extends Resource
                         ->description('Fill in the blank.')
                         ->schema([
                         Forms\Components\Select::make('type_of_appointment_id')
-                            ->relationship('typeOfAppointment', 'name')
+                            ->relationship('typeOfAppointment', 'name',fn (Builder $query) => $query->where('is_active', true))
                             ->required(),
                         Forms\Components\TextInput::make('patient_name')
                             ->required()

@@ -67,7 +67,8 @@ class TypeOfAppointmentResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->slideOver(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -87,9 +88,9 @@ class TypeOfAppointmentResource extends Resource
     {
         return [
             'index' => Pages\ListTypeOfAppointments::route('/'),
-            'create' => Pages\CreateTypeOfAppointment::route('/create'),
+            // 'create' => Pages\CreateTypeOfAppointment::route('/create'),
             'view' => Pages\ViewTypeOfAppointment::route('/{record}'),
-            'edit' => Pages\EditTypeOfAppointment::route('/{record}/edit'),
+            // 'edit' => Pages\EditTypeOfAppointment::route('/{record}/edit'),
         ];
     }
 }

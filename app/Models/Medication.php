@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Medication extends Model
 {
@@ -22,4 +23,10 @@ class Medication extends Model
     protected $casts = [
         'supplier_info' => 'json'
     ];
+
+
+    public function patientAppointment(): BelongsTo
+    {
+        return $this->belongsTo(PatientAppointment::class);
+    }
 }

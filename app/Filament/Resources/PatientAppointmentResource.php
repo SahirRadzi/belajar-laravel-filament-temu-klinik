@@ -145,6 +145,7 @@ class PatientAppointmentResource extends Resource
                 Tables\Actions\ActionGroup::make([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make()
+                    ->slideOver()
                     ->color('success'),
                 Tables\Actions\DeleteAction::make(),
                 ])
@@ -167,8 +168,8 @@ class PatientAppointmentResource extends Resource
     {
         return [
             'index' => Pages\ListPatientAppointments::route('/'),
-            'create' => Pages\CreatePatientAppointment::route('/create'),
-            'edit' => Pages\EditPatientAppointment::route('/{record}/edit'),
+            // 'create' => Pages\CreatePatientAppointment::route('/create'),
+            // 'edit' => Pages\EditPatientAppointment::route('/{record}/edit'),
         ];
     }
 }
