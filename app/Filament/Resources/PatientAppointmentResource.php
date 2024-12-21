@@ -62,10 +62,16 @@ class PatientAppointmentResource extends Resource
 
                     Forms\Components\DatePicker::make('date_of_appointment')
                         ->required(),
-                    Forms\Components\TextArea::make('note')
-                        ->maxLength(255),
                     ])
                     ->columns(2),
+
+                Section::make('Notes')
+                    ->description('Note for patient.')
+                    ->schema([
+                        Forms\Components\RichEditor::make('note')
+                        ->hiddenLabel()
+                        ->maxLength(255),
+                    ])->columnSpanFull(),
 
                 Section::make('Appointment Status')
                     ->description('Select the latest status.')
