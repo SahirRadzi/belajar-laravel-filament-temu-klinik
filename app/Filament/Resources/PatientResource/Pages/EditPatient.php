@@ -28,4 +28,9 @@ class EditPatient extends EditRecord
             ->duration('5000')
             ->body('Loghat Perak: Maklumat pesakit kome, udah berjaye kemaskini.');
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

@@ -16,6 +16,13 @@ class CreatePatient extends CreateRecord
     //     return 'Patient created';
     // }
 
+    protected static bool $canCreateAnother = false;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
     protected function getCreatedNotification(): ?Notification
     {
         return Notification::make()
