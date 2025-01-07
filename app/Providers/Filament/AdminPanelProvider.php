@@ -7,6 +7,7 @@ use Filament\Panel;
 use Filament\Widgets;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Illuminate\Contracts\View\View;
 use Filament\Http\Middleware\Authenticate;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -33,7 +34,11 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->font(family:'Poppins') // font family stye 'Poppins' / By Default 'Inter'
             // ->darkMode(condition: false) // darkMode setting boolean
-
+            ->renderHook(
+                'panels::body.end',
+                fn (): View => view('filament.footer'),
+            )
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->sidebarCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
