@@ -133,8 +133,18 @@ class PatientAppointmentResource extends Resource
                 Tables\Columns\TextColumn::make('medication_list')
                     ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
-                Tables\Columns\BadgeColumn::make('status')
-                    ->searchable(),
+
+                    Tables\Columns\BadgeColumn::make('status')
+                    ->label('Status')
+                    ->color(fn (string $state): string => match ($state) {
+                        'Complete Appointment' => 'success',
+                        'On Schedule' => 'info',
+                        'New Patient' => 'danger',
+                    })
+                    ->searchable()
+                    ->sortable(),
+
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
